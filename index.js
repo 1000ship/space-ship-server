@@ -10,14 +10,14 @@ var io = require("socket.io")(http, {
 });
 
 app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/index.html");
+  // res.sendFile(__dirname + "/index.html");
+  res.send("hello")
+  console.log(123)
 });
 
-http.listen(4000, "0.0.0.0", () => {
-  console.log("listening on *:4000");
-});
+app.listen(80, '0.0.0.0');
 
-var sockets = []
+var sockets = [];
 
 io.on("connection", (socket) => {
   console.log("Connect ID:", socket.id);
@@ -25,18 +25,21 @@ io.on("connection", (socket) => {
   socket.on("enter", (id) => {
     console.log("Enter", id);
     io.emit("enter", id);
-    socket.emit('user-list', sockets.map(each => each.id))
-    sockets.push( socket )
+    socket.emit(
+      "user-list",
+      sockets.map((each) => each.id)
+    );
+    sockets.push(socket);
   });
 
   socket.on("disconnect", (reason) => {
     console.log("Exit", socket.id);
     io.emit("exit", socket.id);
-    const exitIndex = sockets.findIndex( each => each.id === socket.id )
-    sockets.splice( exitIndex, 1 )
+    const exitIndex = sockets.findIndex((each) => each.id === socket.id);
+    sockets.splice(exitIndex, 1);
   });
 
   socket.on("user-move", (x, y) => {
-    io.emit("user-move", socket.id, x, y)
-  })
+    io.emit("user-move", socket.id, x, y);
+  });
 });
