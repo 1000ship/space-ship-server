@@ -13,7 +13,7 @@ app.get("/", (req, res) => {
   res.sendFile(__dirname + "/index.html");
 });
 
-http.listen(4000, () => {
+http.listen(4000, "0.0.0.0", () => {
   console.log("listening on *:4000");
 });
 
