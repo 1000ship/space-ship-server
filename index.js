@@ -28,6 +28,7 @@ const EVENT_ENTER = "e"
 const EVENT_EXIT = "x"
 const EVENT_USER_LIST = "l"
 const EVENT_USER_MOVE = "m"
+const EVENT_USER_TALK = "t";
 
 io.on("connection", (socket) => {
   // console.log("Connect ID:", socket.id);
@@ -54,4 +55,8 @@ io.on("connection", (socket) => {
     if( who !== -1 ) sockets[who].setPosition(x,y)
     io.emit(EVENT_USER_MOVE, socket.id, x, y);
   });
+
+  socket.on(EVENT_USER_TALK, (message) => {
+    io.emit(EVENT_USER_TALK, socket.id, message)
+  })
 });
