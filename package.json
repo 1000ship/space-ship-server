@@ -1,0 +1,22 @@
+{
+  "name": "space-ship-server",
+  "version": "1.0.0",
+  "description": "Server for space-ship",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/1000ship/space-ship-server.git"
+  },
+  "keywords": [
+    "space-ship"
+  ],
+  "author": "1000ship",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/1000ship/space-ship-server/issues"
+  },
+  "homepage": "https://github.com/1000ship/space-ship-server#readme"
+}
