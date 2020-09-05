@@ -12,10 +12,13 @@ var io = require("socket.io")(http, {
 app.get("/", (req, res) => {
   // res.sendFile(__dirname + "/index.html");
   res.send("hello")
-  console.log(123)
 });
 
-app.listen(80, '0.0.0.0');
+app.listen(80)
+
+http.listen(4000, () => {
+  console.log("listening on *:4000");
+});
 
 var sockets = [];
 
